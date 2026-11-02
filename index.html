@@ -83,8 +83,8 @@ function hit(it){
 }
 let floats=[];
 function flood(){const words=['Ahmetttttimm','Ahmettimmm','AHMETTTİMM','Ahmetimmm 😍','Ahmettttim ❤️'];
-  for(let i=0;i<34;i++)floats.push({kind:'h',x:Math.random()*W,y:H+Math.random()*200,vy:-(2+Math.random()*3),dx:Math.random()*6,sz:22+Math.random()*26,l:220+Math.random()*80});
-  for(let i=0;i<26;i++)floats.push({kind:'w',s:words[i%words.length],x:Math.random()*W,y:H+40+Math.random()*400,vy:-(2.2+Math.random()*2.6),dx:Math.random()*6,sz:18+Math.random()*24,l:260+Math.random()*80,rot:(Math.random()-.5)*.5})}
+  for(let i=0;i<12;i++)floats.push({kind:'h',x:Math.random()*W,y:H+Math.random()*200,vy:-(2+Math.random()*3),dx:Math.random()*6,sz:22+Math.random()*26,l:220+Math.random()*80});
+  for(let i=0;i<8;i++)floats.push({kind:'w',s:words[i%words.length],x:Math.random()*W,y:H+40+Math.random()*400,vy:-(2.2+Math.random()*2.6),dx:Math.random()*6,sz:18+Math.random()*24,l:260+Math.random()*80,rot:(Math.random()-.5)*.5})}
 let fl=null;function flash(s,c){fl={s,c,l:70}}
 function end(){run=false;const m=Math.floor(dist/10);if(m>best){best=m;try{localStorage.setItem('ezgiBest',m)}catch(e){}}
   ttl.textContent='Enerji bitti!';msg.textContent=`Ezgi ${m} metre koştu. En iyi: ${best} m. Bir daha?`;go.textContent='Tekrar';over.hidden=false}
@@ -163,7 +163,7 @@ function draw(){
   for(const q of parts){ctx.globalAlpha=q.l/40;ctx.fillStyle=q.col;ctx.fillRect(q.x,q.y,5,5)}ctx.globalAlpha=1;
   for(const f of floats){f.y+=f.vy;f.l--;const x=f.x+Math.sin((t+f.dx*30)*.05)*14;ctx.globalAlpha=Math.min(1,f.l/40);
     if(f.kind==='h'){ctx.font=f.sz+'px serif';ctx.fillText(['❤️','💖','💕','💗'][Math.floor(f.dx)%4],x,f.y)}
-    else{ctx.save();ctx.translate(x,f.y);ctx.rotate(f.rot);ctx.font=f.sz+"px Bungee, Impact, sans-serif";ctx.lineWidth=4;ctx.strokeStyle='#160f22';ctx.strokeText(f.s,0,0);ctx.fillStyle='#ff4f8b';ctx.fillText(f.s,0,0);ctx.restore()}}
+    else{ctx.save();ctx.translate(x,f.y);ctx.rotate(f.rot);ctx.font=f.sz+"px Bungee, Impact, sans-serif";ctx.fillStyle='#ff4f8b';ctx.fillText(f.s,0,0);ctx.restore()}}
   ctx.globalAlpha=1;floats=floats.filter(f=>f.l>0&&f.y>-60);
   if(fl){ctx.globalAlpha=Math.min(1,fl.l/30);ctx.fillStyle=fl.c;ctx.font="26px Bungee, Impact, sans-serif";ctx.fillText(fl.s,W/2,60);ctx.globalAlpha=1;if(--fl.l<=0)fl=null}
 }
